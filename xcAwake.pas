@@ -1,24 +1,25 @@
 //
 // xcAwake by ABrandaoL
 // Copyright xCoreng Inc.
-// 00.00.01  20251114  1028
+// 00.00.02  20251115  1835
 //
 input
   period(5);
-  useMedias(false);  
+  useMedias(false);
 var
-  td,mtd : real;
-  color  : integer;
+  value,mtd : real;
+  color     : integer;
 begin
   //
   // Calculation
   //
-  if(useMedias)then
-  begin
-  td := xcFnTrades();
-  td := xcMSMA(period, 2, td);
-  end else   td := xcFnTrades();
-  mtd := xcMSMA(7,2,td);
+  value := xcFnTrades();
+  // Use media
+  if (useMedias) then
+    begin
+      value := xcMSMA(period,2,value);
+    end;
+  mtd := xcMSMA(7,2,value);
   if (mtd > 0) then
     color := clLime
   else 
@@ -34,6 +35,19 @@ begin
   //
   PlotN(1,0);
   PlotN(2,mtd);
+  //
+  // Force of direction
+  //
+  if ((color = cllime) and (usemedias) and (mtd < mtd[1])) then
+    begin
+      color := clGreen;
+      SetPlotColor(2,color);
+    end
+  else if ((color = 255) and (usemedias) and (mtd > mtd[1])) then
+    begin
+      color := clMaroon;
+      SetPlotColor(2,color);
+    end;
   //
   // Change Paint Color
   //
