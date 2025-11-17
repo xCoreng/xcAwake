@@ -1,7 +1,7 @@
 //
 // xcAwake by ABrandaoL
 // Copyright xCoreng Inc.
-// 00.00.02  20251115  1835
+// 00.00.03  20251117  1118
 //
 input
   period(14);
@@ -13,9 +13,9 @@ input
   // 4 - Quantity
   // 5 - Synthetic
   type(5);
-  tradesWeightOnSynthetic(1);
+  tradesWeightOnSynthetic(3);
   volumeWeightOnSynthetic(1);
-  askAndBidWeightOnSynthetic(2);
+  askAndBidWeightOnSynthetic(1);
  quantityWeightOnSynthetic(1);
 var
   value : real;
